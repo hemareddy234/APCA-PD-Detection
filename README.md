@@ -59,7 +59,7 @@ This work uses the **Italian Parkinson's Voice and Speech Dataset**.
 
 The dataset is **not included** in this repository. Please obtain it from the original source and organize it as:
 
-```
+
 dataset/
 │
 ├── PD/
@@ -82,9 +82,9 @@ dataset/
 
 Install all dependencies using:
 
-```bash
+bash
 pip install -r requirements.txt
-```
+
 
 ---
 
@@ -103,13 +103,12 @@ pip install -r requirements.txt
 
 ---
 
----
+
 
 ## Citation
 
 If you use this code in your research, please cite the corresponding publication:
 
-```
 Hemasudharani et al., "Adaptive Probabilistic Cellular Automata with Multi-Channel Speech Features for Parkinson's Disease Detection", 2026.
 ```
 
