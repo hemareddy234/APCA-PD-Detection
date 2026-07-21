@@ -7,5 +7,4 @@ torchvision
 torchaudio
 matplotlib
 tqdm
-xgboost
 scipy
