@@ -4,11 +4,11 @@
 
 This repository contains the implementation of the proposed **Adaptive Probabilistic Cellular Automata (APCA)** framework for Parkinson's disease detection using multi-channel speech features.
 
-The proposed pipeline combines multi-channel acoustic feature extraction, leakage-free dimensionality reduction using Principal Component Analysis (PCA), Adaptive Probabilistic Cellular Automata (APCA) feature enhancement, and a Deep Neural Network (DNN) classifier under subject-independent Group K-Fold cross-validation.
+The proposed framework integrates multi-channel speech feature extraction, leakage-free Principal Component Analysis (PCA), Adaptive Probabilistic Cellular Automata (APCA), and a Deep Neural Network (DNN) classifier under subject-independent Group K-Fold cross-validation.
 
 ---
 
-## Repository Structure
+# Repository Structure
 
 ```
 APCA-PD-Detection/
@@ -30,9 +30,9 @@ APCA-PD-Detection/
 
 ---
 
-## Methodology
+# Methodology
 
-The implementation follows the workflow below:
+The proposed framework follows the pipeline below:
 
 1. Speech preprocessing
 2. Multi-channel feature extraction
@@ -53,72 +53,82 @@ The implementation follows the workflow below:
 
 ---
 
-## Dataset
+# Dataset
 
 This work uses the **Italian Parkinson's Voice and Speech Dataset**.
 
-The dataset is **not included** in this repository. Please obtain it from the original source and organize it as:
+The dataset is **not included** in this repository.
 
+Please obtain the dataset from the original source and organize it as follows:
 
+```
 dataset/
 │
-├── PD/
-└── HC/
+├── HC/
+└── PD/
 ```
 
 ---
 
-## Requirements
+# Requirements
 
 - Python 3.10 (tested)
 - PyTorch
 - NumPy
 - Pandas
+- SciPy
 - Scikit-learn
 - Librosa
-- SciPy
 - Matplotlib
 - tqdm
 
-Install all dependencies using:
+Install all required packages using:
 
-bash
+```bash
 pip install -r requirements.txt
-
+```
 
 ---
 
-## Code Modules
+# Code Modules
 
-| File | Description |
-|------|-------------|
-| preprocessing.py | Speech preprocessing |
-| feature_extraction.py | Multi-channel feature extraction |
-| cross_validation.py | Subject-independent Group K-Fold |
-| pca.py | Leakage-free PCA |
-| apca.py | Adaptive Probabilistic Cellular Automata |
-| model.py | Deep Neural Network |
+| Module | Description |
+|---------|-------------|
+| preprocessing.py | Speech preprocessing using Wiener filtering |
+| feature_extraction.py | Multi-channel feature extraction (Mel Spectrogram, GFCC and CQT) |
+| cross_validation.py | Subject-independent Group K-Fold validation |
+| pca.py | Leakage-free Standardization and PCA |
+| apca.py | Adaptive Probabilistic Cellular Automata implementation |
+| model.py | Deep Neural Network architecture |
 | train.py | Model training |
 | evaluate.py | Performance evaluation |
 
 ---
 
-
-
-## Citation
-
-If you use this code in your research, please cite the corresponding publication:
-
-Hemasudharani et al., "Adaptive Probabilistic Cellular Automata with Multi-Channel Speech Features for Parkinson's Disease Detection", 2026.
-```
-
-(Update the citation after your paper is published.)
-## Notes
+# Notes
 
 - Subject-independent evaluation is performed using Group K-Fold cross-validation.
-- Standardization and PCA are fitted only on the training folds to prevent data leakage.
+- Standardization and PCA are fitted only on the training folds to avoid data leakage.
 - APCA is applied after PCA feature transformation.
-- The DNN classifier is implemented using PyTorch.
-## License
+- The Deep Neural Network classifier is implemented using PyTorch.
+- Random seed is fixed to ensure reproducible experiments.
+
+---
+
+# Citation
+
+If you use this implementation in your research, please cite the corresponding publication.
+
+```
+Hemasudharani et al.,
+"Adaptive Probabilistic Cellular Automata with Multi-Channel Speech Features for Parkinson's Disease Detection."
+
+(The citation will be updated after publication.)
+```
+
+---
+
+# License
 
 This repository is provided for academic and research purposes.
+
