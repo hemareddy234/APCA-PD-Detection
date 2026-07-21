@@ -70,7 +70,7 @@ dataset/
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.10 (tested)
 - PyTorch
 - NumPy
 - Pandas
@@ -103,12 +103,23 @@ pip install -r requirements.txt
 
 ---
 
-## Citation
-
-If you use this implementation in your research, please cite the corresponding publication.
-
 ---
 
+## Citation
+
+If you use this code in your research, please cite the corresponding publication:
+
+```
+Hemasudharani et al., "Adaptive Probabilistic Cellular Automata with Multi-Channel Speech Features for Parkinson's Disease Detection", 2026.
+```
+
+(Update the citation after your paper is published.)
+## Notes
+
+- Subject-independent evaluation is performed using Group K-Fold cross-validation.
+- Standardization and PCA are fitted only on the training folds to prevent data leakage.
+- APCA is applied after PCA feature transformation.
+- The DNN classifier is implemented using PyTorch.
 ## License
 
 This repository is provided for academic and research purposes.
