@@ -1,10 +1,10 @@
 # APCA-PD-Detection
 
-## Adaptive Probabilistic Cellular Automata with Multi-Channel Speech Features for Parkinson's Disease Detection
+# Adaptive Probabilistic Cellular Automata with Multi-Channel Speech Features for Parkinson's Disease Detection
 
-This repository contains the implementation of the proposed **Adaptive Probabilistic Cellular Automata (APCA)** framework for Parkinson's disease detection using multi-channel speech features.
+This repository contains the official implementation of the proposed **Adaptive Probabilistic Cellular Automata (APCA)** framework for Parkinson's disease detection using multi-channel speech features.
 
-The proposed framework integrates multi-channel speech feature extraction, leakage-free Principal Component Analysis (PCA), Adaptive Probabilistic Cellular Automata (APCA), and a Deep Neural Network (DNN) classifier under subject-independent Group K-Fold cross-validation.
+The proposed framework integrates speech preprocessing, multi-channel feature extraction, leakage-free Principal Component Analysis (PCA), Adaptive Probabilistic Cellular Automata (APCA), and a Deep Neural Network (DNN) classifier under subject-independent Group K-Fold cross-validation.
 
 ---
 
@@ -19,9 +19,15 @@ APCA-PD-Detection/
 │   ├── cross_validation.py
 │   ├── pca.py
 │   ├── apca.py
+│   ├── experiment.py
+│   ├── baseline.py
+│   ├── ablation.py
 │   ├── model.py
 │   ├── train.py
-│   └── evaluate.py
+│   ├── evaluate.py
+│
+├── data/
+│   └── italian_pd_multichannel_features_655.csv
 │
 ├── README.md
 ├── requirements.txt
@@ -57,22 +63,58 @@ The proposed framework follows the pipeline below:
 
 This work uses the **Italian Parkinson's Voice and Speech Dataset**.
 
-The dataset is **not included** in this repository.
+The original speech recordings are publicly available from the original dataset source and are **not redistributed** in this repository.
 
-Please obtain the dataset from the original source and organize it as follows:
+The extracted feature file used in this work can be downloaded from:
+
+**Google Drive**
+
+YOUR_GOOGLE_DRIVE_LINK
+
+Download
 
 ```
-dataset/
-│
-├── HC/
-└── PD/
+italian_pd_multichannel_features_655.csv
 ```
+
+Place the downloaded file as:
+
+```
+data/
+└── italian_pd_multichannel_features_655.csv
+```
+
+If you wish to regenerate the feature file from the original WAV recordings, run:
+
+```bash
+python code/feature_extraction.py
+```
+
+---
+
+# Experimental Settings
+
+The experiments were performed using the following settings:
+
+- Python 3.10
+- Subject-independent GroupKFold (5 folds)
+- Random Seed = 42
+- Standardization fitted only on training folds
+- PCA Components = 512
+- APCA applied after PCA
+- Deep Neural Network implemented in PyTorch
+- Optimizer: Adam
+- Learning Rate: 0.001
+- Epochs: 100
+- Loss Function: CrossEntropyLoss
 
 ---
 
 # Requirements
 
-- Python 3.10 (tested)
+Required packages:
+
+- Python 3.10
 - PyTorch
 - NumPy
 - Pandas
@@ -82,7 +124,7 @@ dataset/
 - Matplotlib
 - tqdm
 
-Install all required packages using:
+Install all dependencies using:
 
 ```bash
 pip install -r requirements.txt
@@ -96,32 +138,82 @@ pip install -r requirements.txt
 |---------|-------------|
 | preprocessing.py | Speech preprocessing using Wiener filtering |
 | feature_extraction.py | Multi-channel feature extraction (Mel Spectrogram, GFCC and CQT) |
-| cross_validation.py | Subject-independent Group K-Fold validation |
-| pca.py | Leakage-free Standardization and PCA |
+| cross_validation.py | Subject-independent GroupKFold validation |
+| pca.py | Leakage-free standardization and PCA |
 | apca.py | Adaptive Probabilistic Cellular Automata implementation |
+| experiment.py | Main APCA experiment |
+| baseline.py | Baseline model experiments |
+| ablation.py | Ablation study |
 | model.py | Deep Neural Network architecture |
 | train.py | Model training |
 | evaluate.py | Performance evaluation |
 
 ---
 
-# Notes
+# Reproducing the Results
 
-- Subject-independent evaluation is performed using Group K-Fold cross-validation.
+Download the feature CSV and place it inside the **data/** directory.
+
+Run the following scripts.
+
+## Baseline Experiments
+
+```bash
+python code/baseline.py
+```
+
+This generates the baseline performance results.
+
+---
+
+## Ablation Study
+
+```bash
+python code/ablation.py
+```
+
+This generates the ablation study reported in the manuscript.
+
+---
+
+## Proposed APCA Model
+
+```bash
+python code/experiment.py
+```
+
+This performs:
+
+- Subject-independent GroupKFold
+- Leakage-free Standardization
+- PCA
+- APCA
+- DNN Classification
+- Performance Evaluation
+
+---
+
+# Reproducibility
+
+To ensure reproducibility:
+
+- Subject-independent GroupKFold is used throughout the experiments.
 - Standardization and PCA are fitted only on the training folds to avoid data leakage.
-- APCA is applied after PCA feature transformation.
-- The Deep Neural Network classifier is implemented using PyTorch.
-- Random seed is fixed to ensure reproducible experiments.
+- APCA is applied after PCA transformation.
+- Random seeds are fixed.
+- The Deep Neural Network is implemented using PyTorch.
+- Baseline and ablation experiments are provided separately.
 
 ---
 
 # Citation
 
-If you use this implementation in your research, please cite the corresponding publication.
+If you use this implementation in your research, please cite:
 
 ```
-Hemasudharani et al.,
-"Adaptive Probabilistic Cellular Automata with Multi-Channel Speech Features for Parkinson's Disease Detection."
+Hemasudharani et al.
+
+Adaptive Probabilistic Cellular Automata with Multi-Channel Speech Features for Parkinson's Disease Detection.
 
 (The citation will be updated after publication.)
 ```
@@ -130,5 +222,5 @@ Hemasudharani et al.,
 
 # License
 
-This repository is provided for academic and research purposes.
+This repository is provided for academic and research purposes only.
 
