@@ -149,6 +149,22 @@ The experiments were performed using the following settings:
 - Loss Function: CrossEntropyLoss
 
 ---
+# APCA Hyperparameters
+
+The proposed Adaptive Probabilistic Cellular Automata (APCA) is implemented in `code/apca.py` using the following configuration.
+
+| Parameter | Value |
+|-----------|-------|
+| Cellular Automata neighborhood | Moore neighborhood (3 × 3) |
+| Input grid size | 32 × 16 |
+| Number of APCA iterations | 4 |
+| Center cell weight | 0.50 |
+| Mean neighborhood weight | 0.30 |
+| Adaptive factor weight | 0.20 |
+| Adaptive factor | tanh(Standard Deviation of neighborhood) |
+| Output | APCA-enhanced feature grid (flattened to 512 features) |
+
+### APCA Update Rule
 
 # Requirements
 
