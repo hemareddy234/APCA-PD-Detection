@@ -4,6 +4,7 @@ train.py
 Training utilities for the Parkinson's Disease Detection model.
 """
 
+import random
 import numpy as np
 import torch
 import torch.nn as nn
@@ -18,11 +19,17 @@ def set_seed(seed=SEED):
     """
     Set random seed for reproducibility.
     """
-    torch.manual_seed(seed)
+
+    random.seed(seed)
     np.random.seed(seed)
+    torch.manual_seed(seed)
 
     if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
+
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 
 def train_model(
@@ -70,6 +77,7 @@ def train_model(
         Best-performing trained model.
     """
 
+    # Ensure reproducibility
     set_seed()
 
     X_train = torch.tensor(
@@ -158,3 +166,15 @@ def train_model(
 
 if __name__ == "__main__":
     print("Training module loaded successfully.")
+   
+    
+   
+    
+       
+
+    
+
+            
+
+        
+   
