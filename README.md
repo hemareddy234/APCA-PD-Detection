@@ -220,6 +220,9 @@ pip install -r requirements.txt
 Download the feature CSV and place it inside the **data/** directory.
 
 Run the following scripts.
+### Subject-independent GroupKFold
+
+All experiments are performed using **5-fold subject-independent GroupKFold cross-validation**. Subject IDs are automatically extracted from the speech filenames using the implementation provided in `code/cross_validation.py`. All recordings belonging to the same subject are assigned to the same fold, ensuring that no subject appears simultaneously in both the training and testing sets, thereby preventing subject-level data leakage.
 
 ## Baseline Experiments
 
