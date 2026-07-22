@@ -165,7 +165,16 @@ The proposed Adaptive Probabilistic Cellular Automata (APCA) is implemented in `
 | Output | APCA-enhanced feature grid (flattened to 512 features) |
 
 ### APCA Update Rule
+For each interior cell, the state is updated as:
 
+where:
+
+- `center_cell` is the current cell value.
+- `mean(neighborhood)` is the mean of the 3 × 3 Moore neighborhood.
+- `std(neighborhood)` is the standard deviation of the neighborhood.
+- `tanh()` computes the adaptive probabilistic factor.
+
+---
 # Requirements
 
 Required packages:
