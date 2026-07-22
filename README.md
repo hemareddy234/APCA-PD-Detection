@@ -58,6 +58,46 @@ The proposed framework follows the pipeline below:
    - ROC-AUC
 
 ---
+---
+
+# Feature Extraction Parameters
+
+The multi-channel speech features are extracted using the implementation provided in `code/feature_extraction.py`.
+
+### Audio Preprocessing
+
+- Speech preprocessing using Wiener filtering (`preprocessing.py`)
+- Fixed signal duration: **5 seconds**
+- Shorter recordings are zero-padded
+- Longer recordings are truncated to 5 seconds
+
+### Mel Spectrogram
+
+- Library: Librosa
+- Number of Mel bands (`n_mels`): **64**
+- Converted to decibel (dB) scale using `librosa.power_to_db()`
+
+### GFCC-like Representation
+
+- Implemented using MFCC as a GFCC approximation
+- Library: Librosa
+- Number of coefficients (`n_mfcc`): **40**
+
+### Constant-Q Transform (CQT)
+
+- Library: Librosa
+- Number of frequency bins (`n_bins`): **84**
+- Converted to decibel (dB) scale using `librosa.amplitude_to_db()`
+
+### Feature Fusion
+
+The Mel Spectrogram, GFCC-like representation, and CQT features are flattened and concatenated into a single feature vector, which is saved as:
+
+```
+results/italian_pd_multichannel_features_655.csv
+```
+
+---
 
 # Dataset
 
